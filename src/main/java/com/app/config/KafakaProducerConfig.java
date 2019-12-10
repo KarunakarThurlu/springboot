@@ -15,7 +15,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 import com.app.model.User;
 
 @Configuration
-public class KafakaConfig {
+public class KafakaProducerConfig {
 
 	
 	@Bean

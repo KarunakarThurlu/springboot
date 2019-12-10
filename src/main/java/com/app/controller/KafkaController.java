@@ -1,6 +1,10 @@
 package com.app.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +29,21 @@ public class KafkaController {
 		kafkaTemplate.send("kafkatopic1", user);
 		System.out.println(user.getUserEmail()+ " ********** "+ user.getUserName());
 		return "success";
+	}
+	
+	
+	@RequestMapping("/consumer")
+	public User getConsumerData(){
+		return userdata;
+	}
+	
+	User userdata=null;
+	
+	@KafkaListener(groupId = "group1",topics = "kafkatopic1",containerFactory = "kafkalistener")
+	public User getMsgFromTopic(User user){
+		userdata=user;
+		return userdata;
+		
 	}
 	
 }
