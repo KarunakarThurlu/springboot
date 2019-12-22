@@ -34,7 +34,20 @@ public class SeccurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.csrf().disable();
-		/*http.authorizeRequests().antMatchers("/app/**").authenticated().anyRequest().permitAll()
+		/*http.authorizeRequests()
+		.antMatchers("/").permitAll()
+		.antMatchers("/login").permitAll()
+		.antMatchers("/app/**").hasAnyAuthority("ADMIN","USER")
+		.antMatchers("/secure/**").hasAuthority("ADMIN")
+		.anyRequest().authenticated()
+		.and()
+		.formLogin().loginPage("/login")
+		.failureUrl("/login?error=true")
+		.defaultSuccessUrl("/kafka");
+			
+		
+		
+		http.authorizeRequests().antMatchers("/app/**").authenticated().anyRequest().permitAll()
 		.and()
 		.authorizeRequests().antMatchers("/secure/**").authenticated().anyRequest().hasAnyRole("ADMIN")
 		.and()

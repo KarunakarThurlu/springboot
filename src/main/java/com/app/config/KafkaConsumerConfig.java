@@ -16,11 +16,11 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.app.model.User;
 
-@Configuration
-@EnableKafka
+//@Configuration
+//@EnableKafka
 public class KafkaConsumerConfig {
 	
-	@Bean
+	//@Bean
 	public ConsumerFactory<?,?> consumerFactory(){
 		Map<String ,Object> config=new HashMap<>();
 		config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
@@ -28,9 +28,8 @@ public class KafkaConsumerConfig {
 		config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
 		config.put(ConsumerConfig.GROUP_ID_CONFIG, "group1");
 		return new DefaultKafkaConsumerFactory<>(config,new StringDeserializer(),new JsonDeserializer<>(User.class));
-	}
-	
-	@Bean
+	}	
+	//@Bean
 	public KafkaListenerContainerFactory<?> kafkalistener(){
 		ConcurrentKafkaListenerContainerFactory<String, User> factory=new ConcurrentKafkaListenerContainerFactory<String,User>();
 		factory.setConsumerFactory((ConsumerFactory<? super String, ? super User>) consumerFactory());
