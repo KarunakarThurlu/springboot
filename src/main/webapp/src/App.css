@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+.navfont{
+font-size: 20px;
+color: white;
+font-weight: 800;  
+}
+.nav-item3 {
+  justify-content: right;
+}
+.sidebar {
+    padding-left: 10px;
+    background-color:rgb(9, 10, 10);
+    overflow: hidden;
+    opacity: 0.8;
+    height: 100%;
+    color: white;
+    width: 250px;
+    position: fixed;
+   
+}

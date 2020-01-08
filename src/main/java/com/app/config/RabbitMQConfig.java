@@ -4,11 +4,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
-import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -40,12 +36,12 @@ public class RabbitMQConfig {
 	}
 	
 	@Bean
-	TopicExchange exchange() {
-		return new TopicExchange(exchange);
+	DirectExchange exchange() {
+		return new DirectExchange(exchange);
 	}
 	
 	@Bean
-	Binding bind(Queue q,TopicExchange e) {
+	Binding bind(Queue q,DirectExchange e) {
 		return BindingBuilder.bind(q).to(e).with(routingKey);
 	}
 	
