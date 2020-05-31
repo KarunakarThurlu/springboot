@@ -10,19 +10,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class RabbitMQConfig {
 	
-	@Autowired
+	//@Autowired
 	public RabbitTemplate template;
 	
-	@Value("${rabbitmq.queue}")
+	//@Value("${rabbitmq.queue}")
 	private String queueNqme;
 	
 	@Value("${rabbitmq.exchange}")
 	private String exchange;
 	
-	@Value("${rabbitmq.routingkey}")
+	//@Value("${rabbitmq.routingkey}")
 	private String routingKey;
 	
 
@@ -30,17 +30,17 @@ public class RabbitMQConfig {
 		template.convertAndSend(exchange,routingKey, msg);
 	}
 	
-	@Bean
+	//@Bean
 	Queue createQueue() {
 		return new Queue(queueNqme,false);
 	}
 	
-	@Bean
+	//@Bean
 	DirectExchange exchange() {
 		return new DirectExchange(exchange);
 	}
 	
-	@Bean
+	//@Bean
 	Binding bind(Queue q,DirectExchange e) {
 		return BindingBuilder.bind(q).to(e).with(routingKey);
 	}

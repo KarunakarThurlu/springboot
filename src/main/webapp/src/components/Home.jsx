@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./Sidebar";
 import "../App.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faHome} from "@fortawesome/free-solid-svg-icons"
 import { faAlignJustify } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, Nav } from "react-bootstrap";
 
@@ -26,6 +27,7 @@ function Home() {
               aria-hidden="true"
               style={{ fontSize: "30px" }}
             ></i>
+            <FontAwesomeIcon icon={faHome}/>
             DataAnalyticsApplication
           </Nav.Link>
         </Nav.Item>

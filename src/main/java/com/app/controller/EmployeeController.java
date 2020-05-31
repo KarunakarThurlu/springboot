@@ -29,7 +29,7 @@ public class EmployeeController {
 	@Autowired
 	private  EmployeeServiceImpl service;
 	
-	@Autowired
+	//@Autowired
 	private RabbitMQConfig  config;
 	
 	@SuppressWarnings("rawtypes")

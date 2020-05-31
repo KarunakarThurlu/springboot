@@ -14,19 +14,14 @@ public class UserDetailsServiceImpl  implements UserDetailsService{
 	
 	@Autowired
 	private UserRepo userRepo;
-
+    
+	UserDetailsImpl userDetails=null;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user=userRepo.findByUserName(username);
-		UserDetailsImpl userDetails=null;
-		if(user!=null) {
-			userDetails=new UserDetailsImpl();
-			userDetails.setUser(user);
-		}
-		else {
-			throw new UsernameNotFoundException("user "+username+" dos't exist");
-		}
-		return userDetails;
+		userDetails=new UserDetailsImpl();
+		userDetails.setUser(user);
+		return new org.springframework.security.core.userdetails.User(user.getUserName(),user.getUserPwd(),userDetails.getAuthorities());
 	}
 
 }
