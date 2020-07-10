@@ -34,8 +34,6 @@ public class JWTFilter extends OncePerRequestFilter {
 		String authorizationheader=request.getHeader("Authorization");
 		String url=request.getRequestURI();
 		String url2=url.substring(1,6);
-
-		StringBuffer url3=request.getRequestURL();
 		String token=null;
 		String userName=null;
 		if(authorizationheader!=null && authorizationheader.startsWith("Bearer ")) {

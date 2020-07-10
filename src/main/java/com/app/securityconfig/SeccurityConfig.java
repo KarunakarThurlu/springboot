@@ -21,8 +21,9 @@ import com.app.jwtfilter.JWTFilter;
 @Configuration
 @EnableWebSecurity
 
-public class SeccurityConfig<JwtAuthenticationEntryPoint> extends WebSecurityConfigurerAdapter {
+public class SeccurityConfig extends WebSecurityConfigurerAdapter {
 
+	//https://www.devglan.com/react-js/react-js-jwt-authentication-example
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -50,7 +51,7 @@ public class SeccurityConfig<JwtAuthenticationEntryPoint> extends WebSecurityCon
 		http.csrf().disable().authorizeRequests().antMatchers("/login")
 		.permitAll().and()
 		.authorizeRequests()
-        /*.antMatchers("/user/**").hasAuthority("USER")
+       /* .antMatchers("/user/**").hasAuthority("USER")
         .and()
 		.authorizeRequests()
         .antMatchers("/admin/**").hasAnyAuthority("ADMIN")*/
